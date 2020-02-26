@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AddressImpl implements IAddress {
     @Autowired
-    AddressRepository addressRepo;
+   private AddressRepository addressRepo;
 
     @Override
     public Address findAddress(String city, String street, String building, String room) {

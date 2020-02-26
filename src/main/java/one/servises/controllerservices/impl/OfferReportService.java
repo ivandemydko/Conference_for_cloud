@@ -8,7 +8,7 @@ import one.persistence.entity.User;
 import one.servises.controllerservices.ControllerService;
 import one.servises.managers.parameterManager.ParameterManager;
 import one.servises.managers.spaekerManager.SpeakerManager;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class OfferReportService implements ControllerService {
     SpeakerManager speakerManager;
     @Autowired
     IReport iReport;
-    private Logger logger = Logger.getLogger(OfferReportService.class);
+  //  private Logger logger = Logger.getLogger(OfferReportService.class);
     private String theme;
     private User user;
 
@@ -36,11 +36,11 @@ public class OfferReportService implements ControllerService {
     public String handle() {
 
         if (theme == null || theme.isEmpty()) {
-            logger.info("No action done.");
+         //   logger.info("No action done.");
             return "noActionDone";
         }
         if (!pm.isThemeCorrect(theme)) {
-            logger.info("Selected incorrect name of theme:" + theme);
+           // logger.info("Selected incorrect name of theme:" + theme);
             return "errorTheme";
         }
 
@@ -49,7 +49,7 @@ public class OfferReportService implements ControllerService {
         report.setSpeaker((Speaker) user);
         report.setName(theme);
         iReport.saveReport(report);
-        logger.info("Was added new theme:" + theme);
+       // logger.info("Was added new theme:" + theme);
 //        ReportManager reportManager = new ReportManager();
 //        int result = reportManager.addReport(theme, speaker);
 //

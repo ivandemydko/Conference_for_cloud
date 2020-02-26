@@ -9,7 +9,7 @@ import one.persistence.entity.Report;
 import one.persistence.entity.Speaker;
 import one.persistence.entity.User;
 import one.servises.managers.mailManager.MailManager;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ import java.util.Optional;
  */
 @Service
 public class UserManager {
-    private Logger logger = Logger.getLogger(UserManager.class);
+   // private Logger logger = Logger.getLogger(UserManager.class);
 
     @Autowired
     IUser iUser;
@@ -77,7 +77,7 @@ public class UserManager {
         iReport.saveReport(report);
         user.addReport(report);
         mailManager.notifyUserRegistration(user, report);
-        logger.info("User  " + user.getEmail() + " has successfully registered on conference with id " + report.getId());
+      //  logger.info("User  " + user.getEmail() + " has successfully registered on conference with id " + report.getId());
         return "success";
     }
 

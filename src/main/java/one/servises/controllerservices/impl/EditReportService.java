@@ -10,7 +10,7 @@ import one.servises.controllerservices.ControllerService;
 import one.servises.managers.dateTimeManager.DateTimeManager;
 import one.servises.managers.mailManager.MailManager;
 import one.servises.managers.parameterManager.ParameterManager;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ import java.sql.Time;
 
 @Service
 public class EditReportService implements ControllerService {
-    private Logger logger = Logger.getLogger(EditReportService.class);
+   // private Logger logger = Logger.getLogger(EditReportService.class);
     @Autowired
     ParameterManager parameterManager;
     @Autowired
@@ -45,13 +45,13 @@ public class EditReportService implements ControllerService {
     @Override
     public String handle() {
         if (parameterManager.isEmpty(sDate, sTime, city, street, building, room)) {
-            logger.info("Form was not filled out");
+         //   logger.info("Form was not filled out");
             return "errorEmptyForm";
         }
         Address address = new Address(city, street, building, room);
 
         if (!parameterManager.isAddressCorrect(address)) {
-            logger.info("Address was imputed incorrectly");
+           // logger.info("Address was imputed incorrectly");
             return "errorAddress";
         }
 
@@ -69,7 +69,7 @@ public class EditReportService implements ControllerService {
         Speaker speaker = report.getSpeaker();
         mail.notifySpeakerAppointment(speaker, report);
 
-        logger.info("The report was successfully edited");
+       // logger.info("The report was successfully edited");
         return "successfulChanges";
     }
 

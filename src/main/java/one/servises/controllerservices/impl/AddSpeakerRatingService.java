@@ -5,7 +5,7 @@ import one.persistence.entity.Speaker;
 import one.servises.controllerservices.ControllerService;
 import one.servises.managers.parameterManager.ParameterManager;
 import one.servises.managers.spaekerManager.SpeakerManager;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class AddSpeakerRatingService implements ControllerService {
     @Autowired
    private SpeakerManager speakerManager;
 
-    private Logger logger = Logger.getLogger(AddSpeakerRatingService.class);
+   // private Logger logger = Logger.getLogger(AddSpeakerRatingService.class);
     private String rating;
     private String email;
 
@@ -31,18 +31,18 @@ public class AddSpeakerRatingService implements ControllerService {
     @Override
     public String handle() {
         if (!parameterManager.isEmailCorrect(email)) {
-            logger.info("Email was imputed incorrectly: " + email);
+          //  logger.info("Email was imputed incorrectly: " + email);
             return "errorEmailForm";
         }
 
         Speaker speaker = speakerManager.getSpeakerByEmail(email);
         if (speaker == null) {
-            logger.info("Speaker with such " + email + " email does not exist");
+          //  logger.info("Speaker with such " + email + " email does not exist");
             return "errorSpeakerNotExists";
         }
 
         speakerManager.addSpeakerRating(speaker, Integer.parseInt(rating));
-        logger.info("Was added rating " + rating + " to speaker " + speaker.getEmail());
+       // logger.info("Was added rating " + rating + " to speaker " + speaker.getEmail());
         return "successfulChanges";
     }
 

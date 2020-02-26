@@ -9,7 +9,7 @@ import one.servises.controllerservices.ControllerService;
 import one.servises.managers.languageManager.LanguageManager;
 import one.servises.managers.parameterManager.ParameterManager;
 import one.servises.managers.userManager.UserManager;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.Locale;
 
 @Service
 public class RegisterService implements ControllerService {
-    private Logger logger = Logger.getLogger(RegisterService.class);
+  //  private Logger logger = Logger.getLogger(RegisterService.class);
     @Autowired
     private ParameterManager pm;
     @Autowired
@@ -51,23 +51,23 @@ public class RegisterService implements ControllerService {
     @Override
     public String handle() {
         if (pm.isEmpty(name, surname, position)) {
-            logger.info("Form was not filled out");
+         //   logger.info("Form was not filled out");
             return "errorEmptyForm";
         }
         if (!pm.isEmailCorrect(email)) {
-            logger.info("Email was imputed incorrectly: " + email);
+          //  logger.info("Email was imputed incorrectly: " + email);
             return "errorEmailForm";
         }
         if (!pm.isPasswordCorrect(password)) {
-            logger.info("Password was imputed incorrectly" + password);
+           // logger.info("Password was imputed incorrectly" + password);
             return "errorPassword";
         }
         if (!pm.isNameAndSurnameCorrect(name, surname)) {
-            logger.info("Name or surname were imputed incorrectly" + name + " " + surname);
+          //  logger.info("Name or surname were imputed incorrectly" + name + " " + surname);
             return "errorNameOrSurname";
         }
         if (pm.isUserExist(email)) {
-            logger.info("User intended to register under email " + email + " that already exists in system");
+          //  logger.info("User intended to register under email " + email + " that already exists in system");
             return "errorUserExists";
         }
         Language lang = languageManager.getLanguage(locale);
@@ -80,7 +80,7 @@ public class RegisterService implements ControllerService {
             user = userManager.saveUser(user);
         }
         user.setPassword(null);
-        logger.info("Registration of user with email: " + email + " was successful.");
+      //  logger.info("Registration of user with email: " + email + " was successful.");
         return "success";
     }
 

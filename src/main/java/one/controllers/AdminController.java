@@ -14,21 +14,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
-    AssignPositionService positionService;
+    private AssignPositionService positionService;
     @Autowired
-    AddBonusesService bonusesService;
+    private AddBonusesService bonusesService;
     @Autowired
-    AddSpeakerRatingService ratingService;
+    private AddSpeakerRatingService ratingService;
     @Autowired
-    AddPresenceService presenceService;
+    private AddPresenceService presenceService;
     @Autowired
-    IReport iReport;
+    private IReport iReport;
 
     @PostMapping("/assignToPosition")
     public String assignToPosition(@RequestParam(name = "email") String email,
@@ -65,8 +66,8 @@ public class AdminController {
     @PostMapping("/addPresence")
     public String addPresence(@RequestParam(name = "index") String index,
                               @RequestParam(name = "presence") String presence,
-                              HttpSession session,Model model) {
-        Page <Report>page = (Page<Report>) session.getAttribute("pastReports");
+                              HttpSession session, Model model) {
+        Page<Report> page = (Page<Report>) session.getAttribute("pastReports");
         presenceService.setIndex(index);
         presenceService.setPresence(presence);
         presenceService.setPage(page);
@@ -77,7 +78,7 @@ public class AdminController {
 
     @PostMapping("/addSpeakerRating")
     public String addSpeakerRating(@RequestParam(name = "email") String email,
-                              @RequestParam(name = "rating") String rating, Model model) {
+                                   @RequestParam(name = "rating") String rating, Model model) {
         ratingService.setEmail(email);
         ratingService.setRating(rating);
         String result = ratingService.handle();

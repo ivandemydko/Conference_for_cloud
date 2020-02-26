@@ -15,11 +15,11 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/speaker")
 public class SpeakerController {
     @Autowired
-    OfferReportService offerService;
+    private OfferReportService offerService;
 
     @PostMapping("/offerReport")
     public String offerReport(@RequestParam(name = "theme") String theme,
-                                   Model model, HttpSession session) {
+                              Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
         offerService.setTheme(theme);
         offerService.setUser(user);

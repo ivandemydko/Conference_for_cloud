@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public class ReportImpl implements IReport {
     @Autowired
-    ReportRepository reportRepo;
+   private ReportRepository reportRepo;
 
 
     @Override

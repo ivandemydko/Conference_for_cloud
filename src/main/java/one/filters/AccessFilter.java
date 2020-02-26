@@ -1,7 +1,7 @@
 package one.filters;
 
 import one.persistence.entity.User;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 @Component
 public class AccessFilter implements Filter {
-    private Logger logger = Logger.getLogger(AccessFilter.class);
+   // private Logger logger = Logger.getLogger(AccessFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -34,9 +34,9 @@ public class AccessFilter implements Filter {
             pattern = Pattern.compile("^/admin|^/moderator|^/speaker|^/user");
             matcher = pattern.matcher(uri);
             if (matcher.find()) {
-                logger.warn("Unknown tried to access to protected resources:" + (uri + "?" + query)
-                        + " Remote host: " + httpRequest.getRemoteHost()
-                        + " Remote address: " + httpRequest.getRemoteAddr());
+//                logger.warn("Unknown tried to access to protected resources:" + (uri + "?" + query)
+//                        + " Remote host: " + httpRequest.getRemoteHost()
+//                        + " Remote address: " + httpRequest.getRemoteAddr());
                 httpRequest.getSession().invalidate();
                 dispatcher.forward(servletRequest, servletResponse);
                 return;
@@ -70,9 +70,9 @@ public class AccessFilter implements Filter {
                     break;
             }
             if (isAccessViolated) {
-                logger.warn("user " + user.getEmail() + " tried to access to protected resources:" + (uri + "?" + query)
-                        + " Remote host: " + httpRequest.getRemoteHost()
-                        + " Remote address: " + httpRequest.getRemoteAddr());
+//                logger.warn("user " + user.getEmail() + " tried to access to protected resources:" + (uri + "?" + query)
+//                        + " Remote host: " + httpRequest.getRemoteHost()
+//                        + " Remote address: " + httpRequest.getRemoteAddr());
                 httpRequest.getSession().invalidate();
                 dispatcher.forward(servletRequest, servletResponse);
                 return;

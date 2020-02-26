@@ -75,7 +75,7 @@
                     <p><span th:utext="#{label.static.date}"></span>: <input type="date" name="date"
                                                                              pattern="yyyy-MM-dd"
                                                                              required></p>
-                    <p><span th:utext="#{label.static.time}"></span>: <input type="time" name="time" required></p>
+                    <p><span th:utext="#{label.static.time}"></span>: <input type="time"  name="time" pattern="HH:mm" value="00:00"></p>
                     <p><textarea name="theme" th:placeholder="#{label.static.theme}" required></textarea></p>
                     <p><input type="text" name="city" size="30" pattern="[а-яА-Яa-zA-ZЇїЄєІі]{2,30}"
                               th:placeholder="#{label.static.city}" required/>

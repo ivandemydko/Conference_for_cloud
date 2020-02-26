@@ -11,7 +11,7 @@ import one.servises.managers.dateTimeManager.DateTimeManager;
 import one.servises.managers.mailManager.MailManager;
 import one.servises.managers.parameterManager.ParameterManager;
 import one.servises.managers.spaekerManager.SpeakerManager;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,7 @@ public class AddReportService implements ControllerService {
     @Autowired
     private IAddress iAddress;
 
-    private Logger logger = Logger.getLogger(AddReportService.class);
+  //  private Logger logger = Logger.getLogger(AddReportService.class);
     private String sDate;
     private String sTime;
     private String theme;
@@ -64,30 +64,30 @@ public class AddReportService implements ControllerService {
     public String handle() {
 
         if (parameterManager.isEmpty(sDate, sTime, theme, city, street, building, room, email)) {
-            logger.info("Form was not filled out");
+           // logger.info("Form was not filled out");
             return "errorEmptyForm";
         }
 
         Date date = dateTimeManager.fromStringToSqlDate(sDate);
         if (new java.util.Date().getTime() > date.getTime()) {
-            logger.info("Date was not input incorrectly" + date);
+         //   logger.info("Date was not input incorrectly" + date);
             return "errorDate";
         }
 
         if (!parameterManager.isThemeCorrect(theme)) {
-            logger.info("Selected incorrect name of theme: " + theme);
+           // logger.info("Selected incorrect name of theme: " + theme);
             return "errorTheme";
         }
 
         Speaker speaker = speakerManager.getSpeakerByEmail(email);
         if (speaker == null) {
-            logger.info("Speaker with such " + email + " email does not exist");
+           // logger.info("Speaker with such " + email + " email does not exist");
             return "errorSpeakerNotExists";
         }
 
         Address address = new Address(city, street, building, room);
         if (!parameterManager.isAddressCorrect(address)) {
-            logger.info("Address was imputed incorrectly");
+           // logger.info("Address was imputed incorrectly");
             return "errorAddress";
         }
 
@@ -106,7 +106,7 @@ public class AddReportService implements ControllerService {
             mail.notifySpeakerAppointment(speaker, report);
         }
 
-        logger.info("Report was successfully added");
+      //  logger.info("Report was successfully added");
         return "successfulChanges";
     }
 

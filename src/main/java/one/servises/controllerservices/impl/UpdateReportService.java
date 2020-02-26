@@ -12,7 +12,7 @@ import one.servises.managers.dateTimeManager.DateTimeManager;
 import one.servises.managers.mailManager.MailManager;
 import one.servises.managers.parameterManager.ParameterManager;
 import one.servises.managers.spaekerManager.SpeakerManager;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,7 @@ public class UpdateReportService implements ControllerService {
     @Autowired
     IAddress iAddress;
 
-    private Logger logger = Logger.getLogger(UpdateReportService.class);
+  //  private Logger logger = Logger.getLogger(UpdateReportService.class);
     private String theme;
     private String sDate;
     private String sTime;
@@ -54,7 +54,7 @@ public class UpdateReportService implements ControllerService {
     @Override
     public String handle() {
         if (parameterManager.isAllEmpty(theme, sDate, sTime, city, street, building, room, email)) {
-            logger.info("No action done");
+         //   logger.info("No action done");
             return "noActionDone";
         }
         Report oldReport = report;
@@ -62,7 +62,7 @@ public class UpdateReportService implements ControllerService {
         if (!email.isEmpty()) {
             newSpeaker = speakerManager.getSpeakerByEmail(email);
             if (newSpeaker == null) {
-                logger.info("Speaker with such " + email + " email does not exist");
+              //  logger.info("Speaker with such " + email + " email does not exist");
                 return "errorSpeakerNotExists";
             }
         } else {
@@ -82,11 +82,11 @@ public class UpdateReportService implements ControllerService {
         Time time = sTime.isEmpty() ? oldReport.getTime() : dateTimeManager.fromStringToTime(sTime);
 
         if (new java.util.Date().getTime() > date.getTime()) {
-            logger.info("The date was imputed incorrectly");
+           // logger.info("The date was imputed incorrectly");
             return "errorDate";
         }
         if (!parameterManager.isAddressCorrect(newAddress)) {
-            logger.info("Address was imputed incorrectly");
+          //  logger.info("Address was imputed incorrectly");
             return "errorAddress";
         }
 
@@ -98,7 +98,7 @@ public class UpdateReportService implements ControllerService {
         }
 
         if (!parameterManager.isThemeCorrect(newTheme)) {
-            logger.info("Selected incorrect name of theme: " + theme);
+           // logger.info("Selected incorrect name of theme: " + theme);
             return "errorTheme";
         }
 
@@ -126,7 +126,7 @@ public class UpdateReportService implements ControllerService {
             mail.notifySpeakerChangeConference(newReport, oldReport);
             mail.notifyChangeConference(newReport, oldReport, userList);
         }
-        logger.info("Report with id: " + reportId + "  was successfully updated ");
+       // logger.info("Report with id: " + reportId + "  was successfully updated ");
         return "successfulChanges";
     }
 

@@ -23,15 +23,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/moderator")
 public class ModeratorController {
     @Autowired
-    PaginationManager paginationManager;
+    private PaginationManager paginationManager;
     @Autowired
-    UpdateReportService updateReportService;
+    private UpdateReportService updateReportService;
     @Autowired
-    EditReportService editReportService;
+    private EditReportService editReportService;
     @Autowired
-    AddReportService addReportService;
+    private AddReportService addReportService;
     @Autowired
-    IReport iReport;
+    private IReport iReport;
 
     @GetMapping("/report")
     public String report(@RequestParam(name = "index") String index,

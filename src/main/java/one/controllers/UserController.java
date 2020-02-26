@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class UserController {
 
     @Autowired
-    UserManager userManager;
+    private UserManager userManager;
 
 
     @PostMapping("/registration")

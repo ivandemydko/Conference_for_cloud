@@ -15,9 +15,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/cabinet")
 public class CabinetController {
     @Autowired
-    PaginationManager paginationManager;
+    private  PaginationManager paginationManager;
     @Autowired
-    UserManager userManager;
+    private UserManager userManager;
 
     @RequestMapping("/mainPage")
     public String cabinet() {

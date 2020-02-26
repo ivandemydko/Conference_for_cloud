@@ -8,7 +8,7 @@ import one.servises.controllerservices.ControllerService;
 import one.servises.managers.mailManager.MailManager;
 import one.servises.managers.parameterManager.ParameterManager;
 import one.servises.managers.userManager.UserManager;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class AssignPositionService implements ControllerService {
     MailManager mail;
     @Autowired
     IPosition iPosition;
-    private Logger logger = Logger.getLogger(AssignPositionService.class);
+  //  private Logger logger = Logger.getLogger(AssignPositionService.class);
 
     private String email;
     private User currentUser;
@@ -35,18 +35,18 @@ public class AssignPositionService implements ControllerService {
     public String handle() {
 
         if (!parameterManager.isEmailCorrect(email)) {
-            logger.info("Email was imputed incorrectly: " + email);
+           // logger.info("Email was imputed incorrectly: " + email);
             return "errorEmailForm";
         }
 
         User user = userManager.getUserByEmail(email);
         if (user == null) {
-            logger.info("User with email: " + email + " does not exist");
+           // logger.info("User with email: " + email + " does not exist");
             return "errorUser";
         }
 
         if (user.getPosition().getPosition().equals(userType)) {
-            logger.info("User is already on position: " + userType);
+          //  logger.info("User is already on position: " + userType);
             return "errorPosition";
         }
 
@@ -59,7 +59,7 @@ public class AssignPositionService implements ControllerService {
             mail.assignment(user);
         }
 
-        logger.info("User with email: " + email + " was assign to position: " + position);
+      //  logger.info("User with email: " + email + " was assign to position: " + position);
         return "successfulChanges";
     }
 
